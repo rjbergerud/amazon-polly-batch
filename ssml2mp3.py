@@ -29,6 +29,7 @@ polly = session.client("polly")
 
 voice = args.voice or "Salli"
 #voice = "Joanna"
+#voice = "Matthew"
 
 infile = args.infile
 index = 1
@@ -43,7 +44,7 @@ with open(outfile, "wb") as out:
         print "piece %d: %s" % (i, piece)
         try:
             # Request speech synthesis
-            response = polly.synthesize_speech(Text=piece, TextType="ssml", OutputFormat="mp3",
+            response = polly.synthesize_speech(Text=piece, TextType="ssml", OutputFormat="mp3", Engine="neural", 
                  VoiceId=voice)
         except (BotoCoreError, ClientError) as error:
             # The service returned an error, exit gracefully
